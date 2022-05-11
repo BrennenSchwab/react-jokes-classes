@@ -71,36 +71,36 @@ class JokeList extends Component {
   this.setState(s => ({ jokes: s.jokes.map(j => j.id === id ? {...j, votes: j.votes + delta } : j )}))
 }
 
-render() {
-  let sortedJokes = [...this.state.jokes].sort((a, b) => b.votes - a.votes);
-
-  return (
-    <div className="JokeList">
-      <button
-        className="JokeList-getmore"
-        onClick={this.generateNewJokes}
-      >
-        Get New Jokes
-      </button>
-
-      {sortedJokes.map(j => (
-        <Joke
-          text={j.joke}
-          key={j.id}
-          id={j.id}
-          votes={j.votes}
-          vote={this.vote}
-        />
-      ))}
-
-      {sortedJokes.length < this.props.numJokesToGet ? (
-        <div className="loading">
-          <i className="fas fa-4x fa-spinner fa-spin" />
-        </div>
-      ) : null}
-    </div>
-  );
-}
+  render() {
+    let sortedJokes = [...this.state.jokes].sort((a, b) => b.votes - a.votes);
+  
+    return (
+      <div className="JokeList">
+        <button
+          className="JokeList-getmore"
+          onClick={this.generateNewJokes}
+        >
+          Get New Jokes
+        </button>
+    
+        {sortedJokes.map(j => (
+          <Joke
+            text={j.joke}
+            key={j.id}
+            id={j.id}
+            votes={j.votes}
+            vote={this.vote}
+          />
+        ))}
+  
+        {sortedJokes.length < this.props.numJokesToGet ? (
+          <div className="loading">
+            <i className="fas fa-4x fa-spinner fa-spin" />
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 
 }
 
